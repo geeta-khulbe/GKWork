@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebApplicationAPI.Data;
+using WebApplicationAPI.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddDbContext<GKWalksDBContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("GKWalksConnectionString"));
 });
+builder.Services.AddScoped<IRegionRepository, RegionRepository>();
 
 var app = builder.Build();
 
